@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  ImagePickerExperiment
+//  ImagePickerTutorial2
 //
-//  Created by James Barry on 7/3/19.
+//  Created by James Barry on 7/21/19.
 //  Copyright © 2019 Jim Barry. All rights reserved.
 //
 
@@ -10,23 +10,27 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var imagePickerView: UIImageView!
+    @IBOutlet var imageView: UIImageView!
+    
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        imagePicker.delegate = self
     }
 
-    @IBAction func pickAnImage(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+    @IBAction func loadImageButtonTapped(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
         present(imagePicker, animated: true, completion: nil)
-        dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            imagePickerView.image = image
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = pickedImage
         }
         
         dismiss(animated: true, completion: nil)

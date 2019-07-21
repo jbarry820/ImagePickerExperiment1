@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  ImagePickerExperiment
+//  ImagePickerTutorial2
 //
-//  Created by James Barry on 7/3/19.
+//  Created by James Barry on 7/21/19.
 //  Copyright © 2019 Jim Barry. All rights reserved.
 //
 
